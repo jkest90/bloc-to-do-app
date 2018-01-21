@@ -38,10 +38,11 @@ function onReady() {
         deleteTask.textContent = 'Delete';
         // add attribute of id='removeButon'
         deleteTask.setAttribute('id', 'removeButton');
-        // add click event to deleteTask button. find parentNode of newLi, then remove newLi child every time deleteTask button is clicked. 
+        // add click event to deleteTask button. find parentNode of newLi, then remove newLi child every time deleteTask button is clicked.
         deleteTask.addEventListener('click', event => {
-            newLi.parentNode.removeChild(newLi);
-            console.log('Item Deleted');
+            // alternative method -> newLi.remove();
+             newLi.parentNode.removeChild(newLi);
+            console.log('item deleted');
         });
         // add delete button to each new item child.
         newLi.appendChild(deleteTask);
