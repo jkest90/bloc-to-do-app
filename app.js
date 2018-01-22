@@ -118,15 +118,9 @@ function onReady() {
         deleteTask.setAttribute('id', 'removeButton');
         // add click event to deleteTask button. find parentNode of newLi, then remove newLi child every time deleteTask button is clicked.
         deleteTask.addEventListener('click', event => {
-<<<<<<< HEAD
             // alternative method -> newLi.remove();
-             newLi.parentNode.removeChild(newLi);
-            console.log('item deleted');
-=======
-            // alternative: newLi.remove();
             newLi.parentNode.removeChild(newLi);
-            console.log('Item Deleted');
->>>>>>> mod2-checkpoint-todo2
+            console.log('item deleted');
         });
         // add delete button to each new item child.
         newLi.appendChild(deleteTask);
