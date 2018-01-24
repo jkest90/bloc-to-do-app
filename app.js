@@ -71,7 +71,6 @@ function onReady() {
 window.onLoad = function() {
     onReady();
 };
-
 window.onLoad();
 
 
