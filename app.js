@@ -1,12 +1,21 @@
-
+// -- CHECKPOINT PT 2
 // 1. Create a submit event on the form that calls createNewToDo()
 // 2. createNewToDo() pushes the form input value into the toDos array as an object.
 // 3. It then calls renderTheUI(), which loops through each item in the toDos array and displays it on the page.
 
+// -- ASSIGNMENT PT 2
+// 1. Let id = 0; add id property to toDos object to help keep track of each item.
+// 2. Increment id by 1 each time new item is added.
+// 3. Add delete button to each new item.
+// 4. Add an event listener on the delete button and call deleteToDo(id)
+// 5. deleteToDo() filters out an item in the to-dos array if the IDs dont match, and doesn't filter it if they do.
+// 6. Update UI
+
 function onReady() {
     let toDos = [];
+    let id = 0;
 
-    // -- Select DOM form elements
+    // -- SELECT DOM FORM ELEMENTS
     // form
     const addToDoForm = document.getElementById('addToDoForm');
     // input
@@ -22,15 +31,22 @@ function onReady() {
         // push toDo into array with a title property of the input value
         toDos.push({
             title: newToDoText.value,
-            complete: false
+            complete: false,
+            id: id
         });
-
+        // increment id variable
+        id ++;
         // empty input value after submit
         newToDoText.value = '';
-
         // add new to-dos to UI
         renderTheUI();
         console.log('Item added to list', toDos);
+    }
+
+    // -- DELETE TO DO ITEM
+    function deleteToDo(id) {
+        // return true if the ids don't match, and false if they do.
+        toDos = toDos.filter(item => item.id !== id);
     }
 
     // -- RENDER UI BASED ON CURRENT STATE OF TODOS ARRAY
@@ -41,21 +57,38 @@ function onReady() {
 
         // loop through toDos array an create a new list item each submit
         toDos.forEach(function(toDo) {
+
+            // -- ADD ITEM
             // create new list item for to-do
             const newLi = document.createElement('li');
-
             // create checkbox input
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-
             // title.textContent = toDo.title;
             newLi.textContent = toDo.title;
-
             // add new list item to UL
             toDoList.appendChild(newLi);
-
             // add checkbox input to new list item
             newLi.appendChild(checkbox);
+
+            // -- DELETE ITEM
+            // create delete button
+            const deleteButton = document.createElement('button');
+            // add Delete word to button
+            deleteButton.textContent = 'Delete';
+            // add Delete button to newLi
+            newLi.appendChild(deleteButton);
+            // add event listener to delete list item
+            deleteButton.addEventListener('click', event => {
+                // newLi.remove();
+                deleteToDo(toDo.id);
+                renderTheUI();
+            });
+
+            // -- CHECKBOX
+            // checkbox.addEventListener('click', event => {
+            //     toDo.checkbox = !toDos.checkbox;
+            // });
         });
     }
 
