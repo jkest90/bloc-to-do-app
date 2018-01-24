@@ -101,11 +101,9 @@ function onReady() {
     });
 }
 
-window.onLoad = function() {
+window.onload = function() {
     onReady();
 };
-
-window.onLoad();
 
 
 // -- PART 1: COMPLETED -- \\
